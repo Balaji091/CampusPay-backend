@@ -1,0 +1,35 @@
+POST http://localhost:5001/register
+Content-Type: application/json
+
+{      
+        "name":"snndlu",
+        "email":"snbs@gmail.com",
+        "phone":"7673923808",
+        "department":"ece",
+        "yearofstudy":2 ,
+        "admissionnumber":"s20093",
+        "password":"snbs@091"
+}
+###rh
+POST  http://localhost:5001/login
+Content-Type: application/json
+
+{
+        "email":"balu@gmail.com",
+        "password":"balu@091"
+}
+####
+POST  http://localhost:5001/payment
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhbHVAZ21haWwuY29tIiwiaWF0IjoxNzM1MDM4MTI1LCJleHAiOjE3MzUwNDE3MjV9.zlQ7TJyY4ID39vGLwXpr9wwYzpnhPgpbMLXClN7xu9E
+
+{   
+    "admissionnumber": "s20096",
+    "courseyear": "2023",
+    "phaseid": 2,
+    "transactionid": "TX12345678",
+    "amountpaid": 5000.00,
+    "paymentdate": "2024-12-24",
+    "receiptpath": "/home/balaji/Desktop/unknown/server/test.jpeg"
+}
+
