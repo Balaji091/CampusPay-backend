@@ -1,9 +1,11 @@
 const pool = require('../../db/pool');
 require('dotenv').config();
+
 exports.postPayment = async (req, res) => {
     try {
-        const { email } = req.user;  // Extract the email from the decoded token
-        console.log('User Email:', email);  // Log the email for debugging
+        const { email } = req.user; 
+        const receiptUrl=req.fileUrl// Extract the email from the decoded token
+        console.log('User Email:', email); // Log the email for debugging
 
         // Step 2: Check if the user exists and fetch admissionnumber
         const userCheckQuery = 'SELECT admissionnumber FROM students WHERE email = $1';
@@ -16,7 +18,8 @@ exports.postPayment = async (req, res) => {
         const admissionnumber = userCheckResult.rows[0].admissionnumber;
 
         // Extract other payment details from the request body
-        const { courseyear, phaseid, transactionid, amountpaid, paymentdate, receiptpath } = req.body;
+        const { courseyear, phaseid, transactionid, amountpaid, paymentdate } = req.body;
+       // Use the URL from the upload function
 
         if (!courseyear || !phaseid || !transactionid || !amountpaid || !paymentdate) {
             return res.status(400).json({ message: 'All fields are required' });
@@ -68,7 +71,7 @@ exports.postPayment = async (req, res) => {
             transactionid,
             amountpaid,
             paymentdate,
-            receiptpath || null,
+            receiptUrl|| null,
         ];
 
         const insertPaymentResult = await pool.query(insertPaymentQuery, values);
@@ -79,8 +82,7 @@ exports.postPayment = async (req, res) => {
         });
     } catch (error) {
         console.error('Error inserting payment:', error.message);
-        console.error(error.stack);  // Logs the stack trace for more details
+        console.error(error.stack); // Logs the stack trace for more details
         res.status(500).json({ message: 'Internal server error' });
     }
 };
-

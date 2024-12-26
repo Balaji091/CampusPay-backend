@@ -1,9 +1,10 @@
 const pool = require('../../db/pool');
 require('dotenv').config();
+
 exports.getPayments = async (req, res) => {
     try {
         const { email } = req.user; // Extract user email
-        const { courseYear, paymentType } = req.query; // Extract query parameters
+        const { searchQuery, paymentType, courseYear } = req.query; // Extract query parameters
 
         // Step 1: Get AdmissionNumber for the user
         const studentQuery = 'SELECT admissionnumber FROM students WHERE email = $1';
@@ -18,7 +19,7 @@ exports.getPayments = async (req, res) => {
         // Step 2: Build the base query and parameters
         let paymentsQuery = `
             SELECT  
-                p.paymentid,  -- Add paymentid to the query
+                p.paymentid, 
                 p.CourseYear,
                 pp.PhaseName,
                 pp.PaymentType   
@@ -34,14 +35,19 @@ exports.getPayments = async (req, res) => {
         const queryParams = [admissionnumber];
 
         // Step 3: Add filters dynamically
-        if (courseYear) {
-            queryParams.push(courseYear);
-            paymentsQuery += ` AND p.CourseYear = $${queryParams.length}`;
+        if (searchQuery) {
+            queryParams.push(`%${searchQuery}%`);
+            paymentsQuery += ` AND CONCAT(pp.PhaseName, ' ', p.CourseYear) ILIKE $${queryParams.length}`;
         }
 
         if (paymentType) {
             queryParams.push(paymentType);
             paymentsQuery += ` AND pp.PaymentType = $${queryParams.length}`;
+        }
+
+        if (courseYear) {
+            queryParams.push(courseYear);
+            paymentsQuery += ` AND p.CourseYear = $${queryParams.length}`;
         }
 
         // Step 4: Execute the query
