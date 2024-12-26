@@ -3,20 +3,24 @@ require('dotenv').config();
 
 const jwtSecret = process.env.JWT_SECRET;
 
-const authenticationCheck = (req, res, next) => {
-    const authHeader = req.headers['authorization'];
+const authMiddleware = (req, res, next) => {
+    const authHeader = req.headers.authorization;
     if (!authHeader) {
-        return res.status(401).send('Authorization token required');
+        return res.status(401).json({ message: 'Authorization header missing' });
     }
 
     const token = authHeader.split(' ')[1];
-    jwt.verify(token, jwtSecret, (err, payload) => {
-        if (err) {
-            return res.status(401).send('Invalid token');
-        }
-        req.user = payload;
+    if (!token) {
+        return res.status(401).json({ message: 'Token missing' });
+    }
+
+    try {
+        const decoded = jwt.verify(token, jwtSecret);
+        req.user = decoded;
         next();
-    });
+    } catch (error) {
+        return res.status(401).json({ message: 'Invalid token' });
+    }
 };
 
-module.exports = authenticationCheck;
+module.exports = authMiddleware;

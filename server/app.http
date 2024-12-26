@@ -15,21 +15,26 @@ POST  http://localhost:5001/login
 Content-Type: application/json
 
 {
-        "email":"balu@gmail.com",
+        "email":"chokkarabalaji@gmail.com",
         "password":"balu@091"
 }
 ####
 POST  http://localhost:5001/payment
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhbHVAZ21haWwuY29tIiwiaWF0IjoxNzM1MDM4MTI1LCJleHAiOjE3MzUwNDE3MjV9.zlQ7TJyY4ID39vGLwXpr9wwYzpnhPgpbMLXClN7xu9E
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhbHVAZ21haWwuY29tIiwiaWF0IjoxNzM1MDU5MzI3LCJleHAiOjE3MzUwNjI5Mjd9.JDyOL1b2SGKGumnoCE6REH7vIAQA1lGH_vTNMzFie-4
 
 {   
-    "admissionnumber": "s20096",
+    "admissionnumber": "s20094",
     "courseyear": "2023",
     "phaseid": 2,
-    "transactionid": "TX12345678",
+    "transactionid": "TX1234568",
     "amountpaid": 5000.00,
     "paymentdate": "2024-12-24",
     "receiptpath": "/home/balaji/Desktop/unknown/server/test.jpeg"
 }
-
+####
+GET  http://localhost:5001/payment/?courseYear=E1&paymentType=Vidya Deevena
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNob2trYXJhYmFsYWppQGdtYWlsLmNvbSIsImlhdCI6MTczNTExMzk5MSwiZXhwIjoxNzM1MTE3NTkxfQ.ZcpcRT04GAHjKd5Kh7HgzuaR-txWXtZP3hjCClvucIg
+###
+GET http://localhost:5001/payment/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZlbmt5QGdtYWlsLmNvbSIsImlhdCI6MTczNTExMjk1OCwiZXhwIjoxNzM1MTE2NTU4fQ.mnzH1dplc_xXNPu7nAg25bDp2ikdoZLSIe5NTxn2Vxs
