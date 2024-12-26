@@ -30,7 +30,7 @@ exports.getPayments = async (req, res) => {
             ON 
                 p.PhaseID = pp.PhaseID
             WHERE 
-                p.AdmissionNumber = $1
+                p.AdmissionNumber = $1 AND verifiedstatus='Accepted'
         `;
         const queryParams = [admissionnumber];
 

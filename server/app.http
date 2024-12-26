@@ -33,8 +33,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhbHVAZ
     "receiptpath": "/home/balaji/Desktop/unknown/server/test.jpeg"
 }
 ####
-GET  http://localhost:5001/payment/?courseYear=E1&paymentType=Vidya Deevena
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNob2trYXJhYmFsYWppQGdtYWlsLmNvbSIsImlhdCI6MTczNTExMzk5MSwiZXhwIjoxNzM1MTE3NTkxfQ.ZcpcRT04GAHjKd5Kh7HgzuaR-txWXtZP3hjCClvucIg
+GET  http://localhost:5001/payment/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNob2trYXJhYmFsYWppQGdtYWlsLmNvbSIsImlhdCI6MTczNTIxOTYyNywiZXhwIjoxNzM1MjIzMjI3fQ.ckHXuA3axeYimQY0mehD_pnPo3PLORJyVRkHahbUGHc
 ###
-GET http://localhost:5001/payment/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZlbmt5QGdtYWlsLmNvbSIsImlhdCI6MTczNTExMjk1OCwiZXhwIjoxNzM1MTE2NTU4fQ.mnzH1dplc_xXNPu7nAg25bDp2ikdoZLSIe5NTxn2Vxs
+GET http://localhost:5001/payment/13c64cbc-14ec-4d8b-8fed-f2ff186869db
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNob2trYXJhYmFsYWppQGdtYWlsLmNvbSIsImlhdCI6MTczNTIxOTYyNywiZXhwIjoxNzM1MjIzMjI3fQ.ckHXuA3axeYimQY0mehD_pnPo3PLORJyVRkHahbUGHc
+####
+
+GET  http://localhost:5001/payment/history
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNob2trYXJhYmFsYWppQGdtYWlsLmNvbSIsImlhdCI6MTczNTIxOTYyNywiZXhwIjoxNzM1MjIzMjI3fQ.ckHXuA3axeYimQY0mehD_pnPo3PLORJyVRkHahbUGHc

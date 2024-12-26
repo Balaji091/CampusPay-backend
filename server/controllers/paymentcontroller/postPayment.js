@@ -58,10 +58,11 @@ exports.postPayment = async (req, res) => {
         }
 
         // Step 6: Insert the payment details into the database
+        const submitteddate=new Date();
         const insertPaymentQuery = `
             INSERT INTO payments 
-            (admissionnumber, courseyear, phaseid, transactionid, amountpaid, paymentdate, receiptpath)
-            VALUES ($1, $2, $3, $4, $5, $6, $7)
+            (admissionnumber, courseyear, phaseid, transactionid, amountpaid, paymentdate, receiptpath,submitteddate)
+            VALUES ($1, $2, $3, $4, $5, $6, $7,$8)
             RETURNING paymentid;
         `;
         const values = [
@@ -72,6 +73,7 @@ exports.postPayment = async (req, res) => {
             amountpaid,
             paymentdate,
             receiptUrl|| null,
+            submitteddate
         ];
 
         const insertPaymentResult = await pool.query(insertPaymentQuery, values);
