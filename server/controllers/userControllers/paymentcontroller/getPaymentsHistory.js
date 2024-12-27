@@ -1,6 +1,6 @@
 // paymentHistory.js
 
-const pool = require('../../db/pool');
+const pool = require('../../../db/pool');
 require('dotenv').config();
 
 exports.getPaymentsHistory = async (req, res) => {
@@ -8,8 +8,6 @@ exports.getPaymentsHistory = async (req, res) => {
         const { email } = req.user;
         const { searchQuery } = req.query;
 
-        console.log('User:', email);
-        console.log('Query Parameters:', req.query);
 
         const studentQuery = 'SELECT admissionnumber FROM students WHERE email = $1';
         const studentResult = await pool.query(studentQuery, [email]);
@@ -42,8 +40,7 @@ exports.getPaymentsHistory = async (req, res) => {
             paymentsQuery += ` AND CONCAT(pp.PhaseName, ' ', p.CourseYear) ILIKE $${queryParams.length}`;
         }
 
-        console.log('Query Params:', queryParams);
-        console.log('Payments Query:', paymentsQuery);
+       
 
         const paymentsResult = await pool.query(paymentsQuery, queryParams);
 

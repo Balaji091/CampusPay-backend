@@ -1,6 +1,6 @@
 // paymentDetails.js
 
-const pool = require('../../db/pool');
+const pool = require('../../../db/pool');
 require('dotenv').config();
 const { validate } = require('uuid'); // Correctly import 'validate' from 'uuid'
 
@@ -27,7 +27,7 @@ exports.getPaymentDetailsById = async (req, res) => {
         const selectPayment = `
             SELECT * 
             FROM payments 
-            WHERE paymentid = $1::uuid AND admissionnumber = $2 AND verifiedstatus="Accepted"
+            WHERE paymentid = $1::uuid AND admissionnumber = $2 AND verifiedstatus='Accepted'
         `;
         const paymentResult = await pool.query(selectPayment, [paymentId, admissionnumber]);
 

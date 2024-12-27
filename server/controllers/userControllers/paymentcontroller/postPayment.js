@@ -1,4 +1,4 @@
-const pool = require('../../db/pool');
+const pool = require('../../../db/pool');
 require('dotenv').config();
 
 exports.postPayment = async (req, res) => {

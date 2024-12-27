@@ -1,4 +1,4 @@
-const cloudinary = require('../../db/cloudinary');
+const cloudinary = require('../../../db/cloudinary');
 const {postPayment}=require('../paymentcontroller/postPayment') // Import postPayment function
 
 exports.uploadFile = async (req, res, next) => {
@@ -21,7 +21,7 @@ exports.uploadFile = async (req, res, next) => {
 
                 // Attach the uploaded file URL to req for further processing
                 req.fileUrl = uploadedFile.secure_url;
-                console.log(req.fileUrl);
+                
 
                 // Call the postPayment function after successful upload
                 return postPayment(req, res);

@@ -1,4 +1,4 @@
-const pool = require('../../db/pool');
+const pool = require('../../../db/pool');
 require('dotenv').config();
 
 exports.getPayments = async (req, res) => {
@@ -30,7 +30,7 @@ exports.getPayments = async (req, res) => {
             ON 
                 p.PhaseID = pp.PhaseID
             WHERE 
-                p.AdmissionNumber = $1 AND verifiedstatus='Accepted'
+                p.AdmissionNumber = $1 AND p.verifiedstatus='Accepted'
         `;
         const queryParams = [admissionnumber];
 
