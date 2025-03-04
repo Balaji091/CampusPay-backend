@@ -26,5 +26,6 @@ CampusPay Backend is a secure and scalable payment processing system designed to
 
 ### Clone the repository  
 ```bash
-git clone https://github.com/Balaji091/StudentsPaymentHub.git
-cd StudentsPaymentHub
+git clone https://github.com/Balaji091/CampusPay-backend.git
+cd CampusPay-backend
+
